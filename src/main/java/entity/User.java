@@ -1,18 +1,18 @@
-package company;
+package entity;
 
 public class User {
 
-    protected int id;
+    protected Long id;
     protected String login;
     protected String password;
 
-    public User(int id, String login, String password){
+    public User(Long id, String login, String password){
         this.id = id;
         this.login = login;
         this.password = password;
     }
 
-    public int getId(){
+    public Long getId(){
         return id;
     }
     public String getLogin(){

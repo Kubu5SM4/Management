@@ -1,24 +1,24 @@
-package company;
+package entity;
 
 public class Product {
 
-    private int id;
+    private Long id;
     private String productName;
     private float price;
     private float weight;
     private String color;
     private int productCount;
 
-    public Product(int id, String productName, float price, float weight, String color, int productCount){
-        this. id = id;
-        this. productName = productName;
+    public Product(Long id, String productName, float price, float weight, String color, int productCount){
+        this.id = id;
+        this.productName = productName;
         this.price = price;
         this.weight = weight;
         this.color = color;
         this.productCount = productCount;
     }
 
-    public int getId(){ return id; }
+    public Long getId(){ return id; }
     public String getProductName(){
         return productName;
     }
