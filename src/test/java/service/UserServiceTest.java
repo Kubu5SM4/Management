@@ -24,7 +24,7 @@ public class UserServiceTest {
     public void testAddUser(){
         //is
         List<User> users = new ArrayList<User>();
-        User user = new User(1l, "admin","admin");
+        User user = new User(1l, "kuba","kuba");
         users.add(user);
         //then
         UserServiceImpl userService = new UserServiceImpl();
@@ -44,7 +44,7 @@ public class UserServiceTest {
         users.add(pablo);
         //then
         UserServiceImpl userService = new UserServiceImpl(users);
-        users.remove(admin);
+        users.remove(0);
         userService.removeUserById(1l);
         List<User> usersFromTestClass = userService.getAllUsers();
         //expected

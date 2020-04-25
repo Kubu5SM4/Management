@@ -25,8 +25,8 @@ public class UserServiceImpl implements api.UserService {
 
     public void removeUserById(Long userId){
         for(int i=0;i<users.size();i++){
-            User userFromTheList = users.get(i);
-            if(userFromTheList.getId() == userId){
+            //User userFromTheList = users.get(i);
+            if(users.get(i).getId() == userId){
                 users.remove(i);
                 break;
             }
