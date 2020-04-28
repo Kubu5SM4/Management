@@ -3,7 +3,7 @@ import entity.Product;
 import java.util.List;
 import java.util.ArrayList;
 
-public class ProductServiceImpl {
+public class ProductServiceImpl implements api.ProductService {
     List<Product> products;
 
     public ProductServiceImpl(){
@@ -18,7 +18,7 @@ public class ProductServiceImpl {
         return products;
     }
 
-    public int howManyProductsWeHave(){
+    public Integer howManyProductsWeHave(){
         return products.size();
     }
 
@@ -34,7 +34,7 @@ public class ProductServiceImpl {
     public boolean doWeHaveProductByName(String productName){
         for(Product product:products){
             if(product.getProductName() == productName){
-                if(product.getProductCount()>0){
+                if(doesProductExistByName(productName) && product.getProductCount()>0){
                     return true;
                 }
             }

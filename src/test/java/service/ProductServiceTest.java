@@ -28,7 +28,7 @@ public class ProductServiceTest {
         ProductServiceImpl productService = new ProductServiceImpl(products);
         int result = productService.howManyProductsWeHave();
         //expected
-        Assert.assertEquals(1, result);
+        Assert.assertEquals(1l, result);
     }
 
     @Test

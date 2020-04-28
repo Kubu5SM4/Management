@@ -4,12 +4,12 @@ public class Product {
 
     private Long id;
     private String productName;
-    private float price;
-    private float weight;
+    private Float price;
+    private Float weight;
     private String color;
-    private int productCount;
+    private Integer productCount;
 
-    public Product(Long id, String productName, float price, float weight, String color, int productCount){
+    public Product(Long id, String productName, Float price, Float weight, String color, Integer productCount){
         this.id = id;
         this.productName = productName;
         this.price = price;
@@ -22,16 +22,16 @@ public class Product {
     public String getProductName(){
         return productName;
     }
-    public float getPrice(){
+    public Float getPrice(){
         return price;
     }
-    public float getWeight(){
+    public Float getWeight(){
         return weight;
     }
     public String getColor(){
         return color;
     }
-    public int getProductCount(){ return productCount;}
+    public Integer getProductCount(){ return productCount;}
 
     public void setPrice (float price){ this.price = price; }
     public void setProductCount(int productCount){this.productCount= productCount; }
