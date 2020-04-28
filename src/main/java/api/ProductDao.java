@@ -2,16 +2,17 @@ package api;
 
 import entity.Product;
 
+import java.io.IOException;
 import java.util.List;
 
 public interface ProductDao {
 
-    public void saveProduct(Product product);
-    public void saveProducts(List<Product> products);
-    public void removeProductsById(Long productId);
-    public void removeProductByName(String productName);
-    public List<Product> getAllProductsFromFile();
-    public Product getProductByIdFromFile(Long productId);
-    public Product getProductByNameFromFile(String productName);
+    public void saveProductToFile(Product product) throws IOException;
+    public void saveProductsToFile(List<Product> products) throws IOException;
+    public void removeProductByIdFromFile(Long productId) throws IOException;
+    public void removeProductByNameFromFile(String productName) throws IOException;
+    public List<Product> getAllProductsFromFile() throws IOException;
+    public Product getProductByIdFromFile(Long productId) throws IOException;
+    public Product getProductByNameFromFile(String productName) throws IOException;
 
 }

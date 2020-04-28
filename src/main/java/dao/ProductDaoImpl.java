@@ -1,20 +1,27 @@
 package dao;
 
 import entity.Product;
-import java.io.BufferedReader;
-import java.io.FileReader;
-import java.io.IOException;
+
+import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
 
 
-public class ProductDaoImpl {
+public class ProductDaoImpl implements api.ProductDao {
 
-    public List<Product> getAllProducts() throws IOException {
+    String fileName;
+    //String productType;
+
+    public ProductDaoImpl(String fileName) throws IOException {
+        this.fileName = fileName;
+        //this.productType=productType;
+        //File.createNewFile(fileName);
+    }
+
+    public List<Product> getAllProductsFromFile() throws IOException {
 
         List<Product> products = new ArrayList<Product>();
-        String productsFileName = "products.txt";
-        FileReader productsFileReader = new FileReader(productsFileName);
+        FileReader productsFileReader = new FileReader(fileName);
         BufferedReader productsReader = new BufferedReader(productsFileReader);
         //  typowy produkt: 1l-buty-14.50-2.5-red-5
         String readOneLine = productsReader.readLine();
@@ -35,6 +42,64 @@ public class ProductDaoImpl {
         productsReader.close();
         return products;
 
+    }
+
+    public void saveProductToFile (Product product) throws IOException {
+        FileOutputStream productOutputStream = new FileOutputStream(fileName);
+        PrintWriter productWriter = new PrintWriter(productOutputStream);
+        productWriter.write(product.toString());
+        productWriter.close();
+    }
+
+    public void saveProductsToFile(List<Product> products) throws IOException {
+        //FileOutputStream productsOutputStream = new FileOutputStream(fileName);
+        PrintWriter productsWriter = new PrintWriter(fileName);
+        for(Product product:products){
+            productsWriter.write(product.toString());
+        }
+        productsWriter.close();
+    }
+
+    public void removeProductByIdFromFile(Long productId) throws IOException {
+        List<Product> products = getAllProductsFromFile();
+        for(Product productx:products){
+            if(productx.getId() == productId){
+                products.remove(productx);
+            }
+            saveProductsToFile(products);
         }
     }
+
+    public void removeProductByNameFromFile (String productName) throws IOException {
+        List<Product> products = getAllProductsFromFile();
+        for(Product product:products){
+            if(product.getProductName().equals(productName)){
+            products.remove(product);
+            }
+            saveProductsToFile(products);
+        }
+    }
+
+    public Product getProductByIdFromFile (Long productId) throws IOException{
+        List<Product> products = getAllProductsFromFile();
+        for(Product product:products){
+            if(product.getId().equals(productId)){
+                return product;
+            }
+        }
+        return null;
+    }
+
+    public Product getProductByNameFromFile (String productName) throws IOException{
+        List<Product> products = getAllProductsFromFile();
+        for(Product product:products){
+            if(product.getProductName().equals(productName)){
+                return product;
+            }
+        }
+        return null;
+    }
+
+
+}
 

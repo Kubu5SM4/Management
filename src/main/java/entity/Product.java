@@ -37,12 +37,12 @@ public class Product {
     public void setProductCount(int productCount){this.productCount= productCount; }
 
     public String toString(){
-        return "\nPRODUCT ID: " +id+
-                ", \nNAME: " + productName+
-                ", \nPRICE: " +price+
-                ", \nWEIGHT: " +weight+
-                ", \nCOLOR: " +color+
-                ", \nAMOUNT: " +productCount;
+        return  id +"-"+
+                productName +"-"+
+                price +"-" +
+                weight +"-"+
+                color +"-"+
+                productCount +"\n";
     }
 
 }
