@@ -2,3 +2,4 @@
 2-shorts-19.5-0.8-blue-14
 3-scarf-32.0-0.3-black-5
 4-vest-58.3-1.1-yellow-40
+5-socks-7.5-0.5-white-100

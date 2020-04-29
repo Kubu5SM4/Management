@@ -23,9 +23,9 @@ public class User {
     }
 
     public String toString(){
-        return "\nUSER ID: " +id+
-                ", \nLOGIN: " +login+
-                ", \nPASSWORD: " +password+"\n";}
+        return  id+ "-" +
+                login+ "-" +
+                password+"\n";}
 
 
 
