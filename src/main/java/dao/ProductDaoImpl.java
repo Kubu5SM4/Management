@@ -39,14 +39,14 @@ public class ProductDaoImpl implements api.ProductDao {
     }
 
     public void saveProductToFile (Product product) throws IOException {
-        FileOutputStream productOutputStream = new FileOutputStream(fileName);
-        PrintWriter productWriter = new PrintWriter(productOutputStream);
-        productWriter.write(product.toString());
-        productWriter.close();
+        List<Product> products = getAllProductsFromFile();
+        products.add(product);
+        saveProductsToFile(products);
     }
 
     public void saveProductsToFile(List<Product> products) throws FileNotFoundException {
         //FileOutputStream productsOutputStream = new FileOutputStream(fileName);
+        FileUtils.clearFile(fileName);
         PrintWriter productsWriter = new PrintWriter(fileName);
         for(Product product:products){
             productsWriter.write(product.toString());
@@ -56,9 +56,9 @@ public class ProductDaoImpl implements api.ProductDao {
 
     public void removeProductByIdFromFile(Long productId) throws IOException {
         List<Product> products = getAllProductsFromFile();
-        for(Product productx:products){
-            if(productx.getId() == productId){
-                products.remove(productx);
+        for(Product productX:products){
+            if(productX.getId() == productId){
+                products.remove(productX);
             }
             saveProductsToFile(products);
         }
