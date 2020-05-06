@@ -28,10 +28,10 @@ public class Main {
         w2.print(new User(4l,"Roko","roko"));
         w2.close();
 
-        ProductDaoImpl dao1 = new ProductDaoImpl(productsFile);
+        ProductDaoImpl dao1 = new ProductDaoImpl(productsFile, "Product");
         dao1.getAllProductsFromFile();
-        //dao1.removeProductByNameFromFile("socks");
-        ProductDaoImpl dao2 = new ProductDaoImpl(productsFile);
+        dao1.removeProductByNameFromFile("socks");
+        //ProductDaoImpl dao2 = new ProductDaoImpl(productsFile);
         //dao2.removeProductByIdFromFile(3l);
 
         UserDaoImpl udao1 = new UserDaoImpl(usersFile);

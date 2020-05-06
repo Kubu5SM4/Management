@@ -1,6 +1,8 @@
 package dao;
 
 import entity.Product;
+import entity.parser.ProductParser;
+import utils.FileUtils;
 
 import java.io.*;
 import java.util.ArrayList;
@@ -10,12 +12,12 @@ import java.util.List;
 public class ProductDaoImpl implements api.ProductDao {
 
     String fileName;
-    //String productType;
+    String productType;
 
-    public ProductDaoImpl(String fileName) throws IOException {
+    public ProductDaoImpl(String fileName, String productType) throws IOException {
         this.fileName = fileName;
-        //this.productType=productType;
-        //File.createNewFile(fileName);
+        this.productType=productType;
+        FileUtils.createNewFile(fileName);
     }
 
     public List<Product> getAllProductsFromFile() throws IOException {
@@ -24,24 +26,16 @@ public class ProductDaoImpl implements api.ProductDao {
         FileReader productsFileReader = new FileReader(fileName);
         BufferedReader productsReader = new BufferedReader(productsFileReader);
         //  typowy produkt: 1l-buty-14.50-2.5-red-5
-        String readOneLine = productsReader.readLine();
-        while(readOneLine!=null) {
-
-            String holder[] = readOneLine.split("-");
-
-            Long id = Long.parseLong(holder[0]);
-            String name = holder[1];
-            Float price = Float.parseFloat(holder[2]);
-            Float weight = Float.parseFloat(holder[3]);
-            String color = holder[4];
-            Integer productCount = Integer.parseInt(holder[5]);
-
-            products.add(new Product(id, name, price, weight, color, productCount));
-            readOneLine = productsReader.readLine();
+        String readLine = productsReader.readLine();
+        while(readLine != null) {
+            Product product = ProductParser.stringToProduct(readLine, productType);
+            if(product!=null){
+                products.add(product);
+            }
+            readLine=productsReader.readLine();
         }
         productsReader.close();
         return products;
-
     }
 
     public void saveProductToFile (Product product) throws IOException {
@@ -51,7 +45,7 @@ public class ProductDaoImpl implements api.ProductDao {
         productWriter.close();
     }
 
-    public void saveProductsToFile(List<Product> products) throws IOException {
+    public void saveProductsToFile(List<Product> products) throws FileNotFoundException {
         //FileOutputStream productsOutputStream = new FileOutputStream(fileName);
         PrintWriter productsWriter = new PrintWriter(fileName);
         for(Product product:products){
